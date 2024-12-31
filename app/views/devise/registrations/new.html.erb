@@ -1,0 +1,48 @@
+<main class="bg-[#181D31] h-screen flex flex-col justify-center gap-10">
+  <section class="flex flex-col items-center gap-1">
+    <%= image_tag('chat.png', width: '100') %>
+    <h1 class="font-bold text-4xl text-white my-4"> Chat App - Ruby on Rails 8.0 </h1>
+    <p class="text-center font-semibold text-white"> A business internal chat for employees! </p>
+  </section>
+
+
+  <section class="flex flex-col items-center ">
+    <h2 class="text-white font-bold text-2xl mb-5">Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'flex flex-col') do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="flex my-2 items-center gap-1 w-96">
+        <%= f.label :email, class: 'text-white font-semibold text-sm w-24' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-sm font-medium rounded w-full' %>
+      </div>
+
+      <div class="flex flex-col my-5 justify-center">
+        <div class="flex gap-1 my-2 items-center w-96">
+          <%= f.label :password, class: 'text-white font-semibold text-sm w-24' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'text-sm font-medium rounded w-full' %>
+        </div>
+        <div class="flex w-full items-center justify-center">
+          <% if @minimum_password_length %>
+            <em class="text-white font-semibold text-sm">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+        </div>
+
+
+      </div>
+
+      <div class="flex gap-1 my-2 items-center w-96 ">
+        <%= f.label :password_confirmation, class: 'text-white font-semibold text-sm w-24' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'text-sm font-medium rounded' %>
+      </div>
+
+      <div class="flex gap-1 my-5 items-center justify-center">
+        <%= f.submit "Sign up", data: {turbo: false}, class: 'bg-green-800 rounded p-3 text-white font-semibold' %>
+      </div>
+    <% end %>
+
+    <div class="flex gap-1 my-2 items-center w-96 justify-center">
+      <em class="text-white font-semibold text-sm">Already registered?</em>
+      <%= render "devise/shared/links" %>
+    </div>
+  </section>
+</main>

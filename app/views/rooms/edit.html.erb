@@ -1,0 +1,5 @@
+<%= turbo_frame_tag "room_#{@room.id}" do %>
+  <div class="mx-auto md:w-2/3 w-full">
+    <%= render "form", room: @room %>
+  </div>
+<% end %>

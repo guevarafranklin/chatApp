@@ -1,0 +1,23 @@
+<%= turbo_frame_tag 'rooms_controller' do %>
+<%= turbo_stream_from 'room_messages_channel' %>
+  <main class="flex w-full h-screen bg-[#181D31]">
+    <%= render 'shared/side_bar' %>
+    <section class="w-5/6 flex flex-col gap-5 h-screen px-5">
+      <%= render 'room', room: @room  %>
+
+      <div id="room_messages_div_container" class="flex flex-col items-center justify-center w-full">
+      <div class="flex flex-col items-center justify-center w-5/6">
+      <div id="room_messages_div" class="h-72 w-5/6 bg-white rounded p-2 overflow-y-auto">
+        <% @room.messages.order(created_at: :asc).each do |message| %>
+          <%= render 'messages/message', {message: message} %>
+        <% end %>
+      </div>
+      </div>
+      <br/>
+      <div class="flex flex-col items-center justify-center w-5/6">
+        <%= render 'messages/form', { room: @room, message: Message.new } %>
+      </div>
+
+    </section>
+  </main>
+<% end %>
